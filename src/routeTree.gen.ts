@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AmenitiesRouteImport } from './routes/amenities'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as LocationRouteImport } from './routes/location'
 import { Route as RoomsRouteImport } from './routes/rooms'
@@ -29,6 +30,11 @@ const AboutRoute = AboutRouteImport.update({
 const AmenitiesRoute = AmenitiesRouteImport.update({
   id: '/amenities',
   path: '/amenities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/amenities': typeof AmenitiesRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/location': typeof LocationRoute
   '/rooms': typeof RoomsRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/amenities': typeof AmenitiesRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/location': typeof LocationRoute
   '/rooms': typeof RoomsRoute
@@ -68,20 +76,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/amenities': typeof AmenitiesRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/location': typeof LocationRoute
   '/rooms': typeof RoomsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/amenities' | '/gallery' | '/location' | '/rooms'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/amenities'
+    | '/contact'
+    | '/gallery'
+    | '/location'
+    | '/rooms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/amenities' | '/gallery' | '/location' | '/rooms'
+  to:
+    | '/'
+    | '/about'
+    | '/amenities'
+    | '/contact'
+    | '/gallery'
+    | '/location'
+    | '/rooms'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/amenities'
+    | '/contact'
     | '/gallery'
     | '/location'
     | '/rooms'
@@ -91,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AmenitiesRoute: typeof AmenitiesRoute
+  ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   LocationRoute: typeof LocationRoute
   RoomsRoute: typeof RoomsRoute
@@ -117,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/amenities'
       fullPath: '/amenities'
       preLoaderRoute: typeof AmenitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -147,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AmenitiesRoute: AmenitiesRoute,
+  ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   LocationRoute: LocationRoute,
   RoomsRoute: RoomsRoute,
