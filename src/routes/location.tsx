@@ -5,6 +5,7 @@ import terrace from "@/assets/terrace.png";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { WhatsAppCta } from "@/components/site/WhatsAppCta";
+import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/location")({
@@ -128,26 +129,23 @@ function LocationPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden">
-        <img
-          src={terrace}
-          alt="Terrace overlooking the Kufri valley at blue hour"
-          loading="lazy"
-          className="h-[60vh] min-h-[400px] w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-pine-deep/70" />
-        <div className="absolute inset-0 grid place-items-center px-5 text-center">
-          <Reveal className="max-w-xl">
-            <h2 className="font-display text-3xl text-cream sm:text-4xl">
-              Planning your Kufri trip?
-            </h2>
-            <p className="mt-4 text-cream/80">
-              Tell us your dates and we'll confirm availability and the easiest route to our door.
-            </p>
-            <WhatsAppCta className="mt-7 px-8 py-4 text-base" />
-          </Reveal>
-        </div>
-      </section>
+      <ParallaxImage
+        src={terrace}
+        alt="Terrace overlooking the Kufri valley at blue hour"
+        className="grid h-[60vh] min-h-[400px] place-items-center px-5 text-center"
+        overlayClassName="bg-pine-deep/70"
+        speed={0.16}
+      >
+        <Reveal className="max-w-xl" variant="scale">
+          <h2 className="font-display text-3xl text-cream sm:text-4xl">
+            Planning your Kufri trip?
+          </h2>
+          <p className="mt-4 text-cream/80">
+            Tell us your dates and we'll confirm availability and the easiest route to our door.
+          </p>
+          <WhatsAppCta className="mt-7 px-8 py-4 text-base" />
+        </Reveal>
+      </ParallaxImage>
     </>
   );
 }

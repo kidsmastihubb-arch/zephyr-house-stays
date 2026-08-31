@@ -42,7 +42,7 @@ function RoomsPage() {
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
         <div className="space-y-20">
           {ROOMS.map((room, i) => (
-            <Reveal key={room.slug}>
+            <Reveal key={room.slug} variant={i % 2 === 0 ? "left" : "right"}>
               <article
                 className={`grid items-center gap-10 lg:grid-cols-2 ${
                   i % 2 === 1 ? "lg:[&>figure]:order-2" : ""
@@ -84,7 +84,7 @@ function RoomsPage() {
           ))}
         </div>
 
-        <Reveal className="mt-20">
+        <Reveal className="mt-20" variant="scale">
           <div className="rounded-3xl border border-border bg-card p-8 text-center shadow-soft">
             <h2 className="font-display text-2xl">Booking information</h2>
             <p className="mt-3 text-sm text-muted-foreground">

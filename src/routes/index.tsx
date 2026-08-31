@@ -12,6 +12,7 @@ import {
   MapPin,
   Clock,
   ArrowRight,
+  ChevronDown,
 } from "lucide-react";
 import terrace from "@/assets/terrace.png";
 import diningView from "@/assets/dining-view.png";
@@ -23,6 +24,7 @@ import { ROOMS } from "@/lib/rooms";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/site/Reveal";
 import { WhatsAppCta } from "@/components/site/WhatsAppCta";
+import { ParallaxImage } from "@/components/site/ParallaxImage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -104,25 +106,35 @@ const NEARBY = [
 function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative flex min-h-screen items-center overflow-hidden">
-        <img
-          src={terrace}
-          alt="Terrace seating overlooking the Himalayan ranges at Zephyr House CASA Stay, Kufri"
-          className="absolute inset-0 h-full w-full slow-zoom object-cover"
-        />
-        <div className="ink-scrim absolute inset-0" />
-        <div className="relative mx-auto w-full max-w-7xl px-5 pt-28 pb-20 lg:px-8">
+      {/* Hero with parallax */}
+      <ParallaxImage
+        src={terrace}
+        alt="Terrace seating overlooking the Himalayan ranges at Zephyr House CASA Stay, Kufri"
+        className="flex min-h-screen items-center"
+        imgClassName="slow-zoom"
+        speed={0.12}
+        overlayClassName="ink-scrim"
+      >
+        <div className="mx-auto w-full max-w-7xl px-5 pt-28 pb-20 lg:px-8">
           <p className="eyebrow rise">Kufri · Shimla · Himachal Pradesh</p>
-          <h1 className="rise mt-4 max-w-4xl font-display text-4xl leading-[1.05] text-cream sm:text-6xl lg:text-7xl">
+          <h1
+            className="rise mt-4 max-w-4xl font-display text-4xl leading-[1.05] text-cream sm:text-6xl lg:text-7xl"
+            style={{ animationDelay: "0.1s" }}
+          >
             Cozy Himalayan stays above the clouds of Kufri
           </h1>
-          <p className="rise mt-6 max-w-xl text-base leading-relaxed text-cream/80 sm:text-lg">
+          <p
+            className="rise mt-6 max-w-xl text-base leading-relaxed text-cream/80 sm:text-lg"
+            style={{ animationDelay: "0.22s" }}
+          >
             Zephyr House CASA Stay is a warm, family-run homestay in Kufri Main Market — pine
             interiors, glass-front lounges, home-cooked Himachali food and a valley that opens up
             the moment you step outside.
           </p>
-          <div className="rise mt-9 flex flex-wrap items-center gap-4">
+          <div
+            className="rise mt-9 flex flex-wrap items-center gap-4"
+            style={{ animationDelay: "0.34s" }}
+          >
             <WhatsAppCta className="px-8 py-4 text-base" />
             <Link
               to="/rooms"
@@ -131,7 +143,10 @@ function Home() {
               View Rooms <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <dl className="rise mt-14 grid max-w-2xl grid-cols-2 gap-6 border-t border-cream/20 pt-6 text-cream sm:grid-cols-4">
+          <dl
+            className="rise mt-14 grid max-w-2xl grid-cols-2 gap-6 border-t border-cream/20 pt-6 text-cream sm:grid-cols-4"
+            style={{ animationDelay: "0.46s" }}
+          >
             {[
               ["Guest rating", `~${SITE.rating}/5`],
               ["Check-in", SITE.checkIn],
@@ -147,12 +162,19 @@ function Home() {
             ))}
           </dl>
         </div>
-      </section>
+        <a
+          href="#intro"
+          aria-label="Scroll down"
+          className="absolute bottom-7 left-1/2 -translate-x-1/2 text-cream/70 transition-colors hover:text-cream float-drift"
+        >
+          <ChevronDown className="h-7 w-7" />
+        </a>
+      </ParallaxImage>
 
       {/* Intro */}
-      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <section id="intro" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-2">
-          <Reveal>
+          <Reveal variant="left">
             <p className="eyebrow">Welcome to Zephyr House</p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">
               A mountain home, not a hotel corridor
@@ -171,7 +193,7 @@ function Home() {
               Check availability
             </WhatsAppCta>
           </Reveal>
-          <Reveal delay={120} className="grid grid-cols-2 gap-4">
+          <Reveal delay={120} variant="right" className="grid grid-cols-2 gap-4">
             <img
               src={corridor}
               alt="Lantern-lit stone corridor leading to the rooms"
@@ -200,7 +222,7 @@ function Home() {
           </Reveal>
           <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
             {ROOMS.map((room, i) => (
-              <Reveal key={room.slug} delay={i * 90}>
+              <Reveal key={room.slug} delay={i * 90} variant="scale">
                 <article className="group h-full overflow-hidden rounded-3xl bg-card shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:shadow-lift">
                   <div className="overflow-hidden">
                     <img
@@ -232,31 +254,28 @@ function Home() {
         </div>
       </section>
 
-      {/* Himalayan views */}
-      <section className="relative overflow-hidden">
-        <img
-          src={roomValley}
-          alt="Room window framing the blue Himalayan ridges at dusk"
-          loading="lazy"
-          className="h-[70vh] min-h-[460px] w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-pine-deep/60" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
-            <Reveal className="max-w-xl">
-              <p className="eyebrow">Himalayan views</p>
-              <h2 className="mt-3 font-display text-3xl text-cream sm:text-5xl">
-                Ridgelines that fade into six shades of blue
-              </h2>
-              <p className="mt-5 leading-relaxed text-cream/80">
-                At 2,600 metres the air is thin and clean, and the valley below Kufri stretches
-                farther than a photograph can hold. Our terrace, dining room and every guest room
-                face it — mist at dawn, gold at sunset, stars by nine.
-              </p>
-            </Reveal>
-          </div>
+      {/* Himalayan views — parallax */}
+      <ParallaxImage
+        src={roomValley}
+        alt="Room window framing the blue Himalayan ridges at dusk"
+        className="flex h-[70vh] min-h-[460px] items-center"
+        overlayClassName="bg-pine-deep/60"
+        speed={0.16}
+      >
+        <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
+          <Reveal className="max-w-xl" variant="left">
+            <p className="eyebrow">Himalayan views</p>
+            <h2 className="mt-3 font-display text-3xl text-cream sm:text-5xl">
+              Ridgelines that fade into six shades of blue
+            </h2>
+            <p className="mt-5 leading-relaxed text-cream/80">
+              At 2,600 metres the air is thin and clean, and the valley below Kufri stretches
+              farther than a photograph can hold. Our terrace, dining room and every guest room
+              face it — mist at dawn, gold at sunset, stars by nine.
+            </p>
+          </Reveal>
         </div>
-      </section>
+      </ParallaxImage>
 
       {/* Why choose */}
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
@@ -266,7 +285,7 @@ function Home() {
         </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {WHY.map((item, i) => (
-            <Reveal key={item.title} delay={i * 80}>
+            <Reveal key={item.title} delay={i * 80} variant={i % 2 === 0 ? "left" : "right"}>
               <div className="flex h-full gap-5 rounded-3xl border border-border bg-card p-7 shadow-soft transition-shadow hover:shadow-lift">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-secondary text-accent">
                   <item.icon className="h-5 w-5" />
@@ -290,9 +309,9 @@ function Home() {
           </Reveal>
           <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {AMENITIES.map((a, i) => (
-              <Reveal key={a.label} delay={i * 60}>
-                <div className="flex h-full flex-col gap-3 rounded-2xl border border-cream/15 bg-cream/5 p-6 transition-colors hover:border-accent/60">
-                  <a.icon className="h-6 w-6 text-accent" />
+              <Reveal key={a.label} delay={i * 60} variant="scale">
+                <div className="group flex h-full flex-col gap-3 rounded-2xl border border-cream/15 bg-cream/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:bg-cream/10">
+                  <a.icon className="h-6 w-6 text-accent transition-transform duration-300 group-hover:scale-110" />
                   <span className="text-sm font-semibold">{a.label}</span>
                 </div>
               </Reveal>
@@ -312,7 +331,7 @@ function Home() {
       {/* Dining */}
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-2">
-          <Reveal>
+          <Reveal variant="left">
             <img
               src={diningView}
               alt="Long wooden dining table facing the mountains at dusk"
@@ -320,7 +339,7 @@ function Home() {
               className="h-[420px] w-full rounded-3xl object-cover shadow-lift"
             />
           </Reveal>
-          <Reveal delay={100}>
+          <Reveal delay={100} variant="right">
             <p className="eyebrow">Dining</p>
             <h2 className="mt-3 font-display text-3xl sm:text-4xl">
               Home-cooked Himachali food, served facing the valley
@@ -355,8 +374,8 @@ function Home() {
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {NEARBY.map((n, i) => (
-              <Reveal key={n.name} delay={i * 90}>
-                <div className="h-full rounded-3xl bg-card p-7 shadow-soft">
+              <Reveal key={n.name} delay={i * 90} variant="up">
+                <div className="group h-full rounded-3xl bg-card p-7 shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:shadow-lift">
                   <p className="text-xs font-bold tracking-[0.2em] text-accent uppercase">
                     {n.distance}
                   </p>
@@ -377,37 +396,34 @@ function Home() {
         </div>
       </section>
 
-      {/* Booking CTA */}
-      <section className="relative overflow-hidden">
-        <img
-          src={loungeGlass}
-          alt="Glass-front lounge with swing seating at Zephyr House CASA Stay"
-          loading="lazy"
-          className="h-[80vh] min-h-[520px] w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-pine-deep/70" />
-        <div className="absolute inset-0 grid place-items-center px-5 text-center">
-          <Reveal className="max-w-2xl">
-            <p className="eyebrow">Direct booking</p>
-            <h2 className="mt-4 font-display text-4xl text-cream sm:text-5xl">
-              Your room in the mountains is one message away
-            </h2>
-            <p className="mt-5 text-cream/80">
-              Message us on WhatsApp for live availability, tariffs and a warm welcome at Kufri
-              Main Market. Check-in {SITE.checkIn} · Check-out {SITE.checkOut}.
-            </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-4">
-              <WhatsAppCta className="px-8 py-4 text-base" />
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-cream/40 px-7 py-4 text-sm font-semibold text-cream transition-colors hover:bg-cream hover:text-pine-deep"
-              >
-                <Clock className="h-4 w-4" /> Contact & timings
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* Booking CTA — parallax */}
+      <ParallaxImage
+        src={loungeGlass}
+        alt="Glass-front lounge with swing seating at Zephyr House CASA Stay"
+        className="grid h-[80vh] min-h-[520px] place-items-center px-5 text-center"
+        overlayClassName="bg-pine-deep/70"
+        speed={0.14}
+      >
+        <Reveal className="max-w-2xl" variant="scale">
+          <p className="eyebrow">Direct booking</p>
+          <h2 className="mt-4 font-display text-4xl text-cream sm:text-5xl">
+            Your room in the mountains is one message away
+          </h2>
+          <p className="mt-5 text-cream/80">
+            Message us on WhatsApp for live availability, tariffs and a warm welcome at Kufri
+            Main Market. Check-in {SITE.checkIn} · Check-out {SITE.checkOut}.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <WhatsAppCta className="px-8 py-4 text-base" />
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-cream/40 px-7 py-4 text-sm font-semibold text-cream transition-colors hover:bg-cream hover:text-pine-deep"
+            >
+              <Clock className="h-4 w-4" /> Contact & timings
+            </Link>
+          </div>
+        </Reveal>
+      </ParallaxImage>
     </>
   );
 }

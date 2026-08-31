@@ -40,7 +40,7 @@ function AboutPage() {
       />
 
       <section className="mx-auto max-w-4xl px-5 py-24 lg:px-8">
-        <Reveal>
+        <Reveal variant="up">
           <p className="eyebrow">Cozy by design</p>
           <h2 className="mt-3 font-display text-3xl sm:text-4xl">
             Built for slow mornings and cold, starry evenings
@@ -81,7 +81,7 @@ function AboutPage() {
               body: "Only a few rooms, no crowds, and evenings quiet enough to hear the wind through the deodars.",
             },
           ].map((c, i) => (
-            <Reveal key={c.title} delay={i * 100}>
+            <Reveal key={c.title} delay={i * 100} variant="scale">
               <article className="h-full overflow-hidden rounded-3xl bg-card shadow-soft">
                 <img
                   src={c.img}
@@ -101,7 +101,7 @@ function AboutPage() {
 
       <section className="bg-pine py-20 text-cream">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:px-8">
-          <Reveal>
+          <Reveal variant="left">
             <h2 className="font-display text-3xl sm:text-4xl">
               Locally hosted. Directly booked. Genuinely Kufri.
             </h2>
@@ -110,7 +110,7 @@ function AboutPage() {
               anything else you would like to know before you arrive.
             </p>
           </Reveal>
-          <Reveal delay={100}>
+          <Reveal delay={100} variant="right">
             <WhatsAppCta className="px-8 py-4 text-base" />
           </Reveal>
         </div>

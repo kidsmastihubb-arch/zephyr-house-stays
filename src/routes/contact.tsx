@@ -40,7 +40,7 @@ function ContactPage() {
 
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
-          <Reveal>
+          <Reveal variant="left">
             <p className="eyebrow">Reach us</p>
             <h2 className="mt-3 font-display text-3xl">Zephyr House CASA Stay</h2>
 
@@ -113,7 +113,7 @@ function ContactPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={100}>
+          <Reveal delay={100} variant="right">
             <img
               src={roomDeluxe}
               alt="Warmly lit guest room at Zephyr House CASA Stay, Kufri"
@@ -126,7 +126,7 @@ function ContactPage() {
 
       <section className="bg-pine py-20 text-cream">
         <div className="mx-auto max-w-3xl px-5 text-center lg:px-8">
-          <Reveal>
+          <Reveal variant="scale">
             <h2 className="font-display text-3xl sm:text-4xl">
               Ready when you are — book your Kufri stay
             </h2>

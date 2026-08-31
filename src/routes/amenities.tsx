@@ -94,7 +94,7 @@ function AmenitiesPage() {
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {ITEMS.map((item, i) => (
-            <Reveal key={item.title} delay={i * 70}>
+            <Reveal key={item.title} delay={i * 70} variant="scale">
               <div className="h-full rounded-3xl border border-border bg-card p-7 shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:shadow-lift">
                 <span className="grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-accent">
                   <item.icon className="h-5 w-5" />
@@ -108,7 +108,7 @@ function AmenitiesPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 pb-24 lg:px-8">
-        <Reveal>
+        <Reveal variant="left">
           <div className="grid items-center gap-10 overflow-hidden rounded-3xl bg-secondary/70 lg:grid-cols-2">
             <img
               src={roomDeluxe}

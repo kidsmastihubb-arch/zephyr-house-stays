@@ -81,7 +81,7 @@ function GalleryPage() {
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
           {PHOTOS.map((photo, i) => (
-            <Reveal key={photo.alt} delay={(i % 3) * 80} className="break-inside-avoid">
+            <Reveal key={photo.alt} delay={(i % 3) * 80} variant="scale" className="break-inside-avoid">
               <button
                 type="button"
                 onClick={() => setIndex(i)}
@@ -99,7 +99,7 @@ function GalleryPage() {
           ))}
         </div>
 
-        <Reveal className="mt-16 text-center">
+        <Reveal className="mt-16 text-center" variant="up">
           <h2 className="font-display text-3xl">Like what you see?</h2>
           <p className="mt-3 text-muted-foreground">
             Rooms fill quickly during snowfall season — message us for live availability.
