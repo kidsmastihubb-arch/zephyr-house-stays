@@ -29,14 +29,14 @@ export function SiteFooter() {
         <div>
           <h3 className="text-sm font-bold tracking-[0.2em] uppercase">Explore</h3>
           <ul className="mt-4 space-y-2.5 text-sm text-cream/70">
-            {[
+            {([
               ["/rooms", "Rooms"],
               ["/about", "About"],
               ["/amenities", "Amenities"],
               ["/gallery", "Gallery"],
               ["/location", "Location"],
               ["/contact", "Contact"],
-            ].map(([to, label]) => (
+            ] as const).map(([to, label]) => (
               <li key={to}>
                 <Link to={to} className="transition-colors hover:text-accent">
                   {label}

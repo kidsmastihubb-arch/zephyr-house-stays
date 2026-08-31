@@ -136,12 +136,12 @@ function GalleryPage() {
           </button>
           <figure onClick={(e) => e.stopPropagation()} className="max-w-5xl">
             <img
-              src={PHOTOS[index].src}
-              alt={PHOTOS[index].alt}
+              src={PHOTOS[index]?.src}
+              alt={PHOTOS[index]?.alt ?? ""}
               className="max-h-[80vh] w-full rounded-2xl object-contain"
             />
             <figcaption className="mt-4 text-center text-sm text-cream/70">
-              {PHOTOS[index].alt}
+              {PHOTOS[index]?.alt}
             </figcaption>
           </figure>
           <button
