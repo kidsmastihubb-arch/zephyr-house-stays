@@ -77,7 +77,6 @@ export function SiteHeader() {
             scrolled ? "border-border text-foreground" : "border-cream/40 text-cream"
           }`}
         >
-          {open ? <Menu className="hidden" /> : null}
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
